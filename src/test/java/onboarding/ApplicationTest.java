@@ -86,6 +86,18 @@ class ApplicationTest {
             int money = 50_237;
             List<Integer> result = List.of(1, 0, 0, 0, 0, 2, 0, 3, 7);
             assertThat(Problem5.solution(money)).isEqualTo(result);
+
+            System.out.print("result is [ ");
+            for (Integer i : result) {
+                System.out.print(i + " ");
+            }
+            System.out.println("]");
+
+            System.out.print("answer is [ ");
+            for (Integer i : Problem5.solution(money)) {
+                System.out.print(i + " ");
+            }
+            System.out.println("]");
         }
 
         @Test
@@ -93,6 +105,18 @@ class ApplicationTest {
             int money = 15_000;
             List<Integer> result = List.of(0, 1, 1, 0, 0, 0, 0, 0, 0);
             assertThat(Problem5.solution(money)).isEqualTo(result);
+
+            System.out.print("result is [ ");
+            for (Integer i : result) {
+                System.out.print(i + " ");
+            }
+            System.out.println("]");
+
+            System.out.print("answer is [ ");
+            for (Integer i : Problem5.solution(money)) {
+                System.out.print(i + " ");
+            }
+            System.out.println("]");
         }
     }
 
