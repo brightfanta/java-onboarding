@@ -12,30 +12,24 @@ class Problem1 {
         Random rand = new Random();
 
         int pageNum = 0;
-        pobi = new ArrayList<>(2); // ArrayList size 설정
-        crong = new ArrayList<>(2);
+        /*pobi = new ArrayList<>(2); // ArrayList size 설정
+        crong = new ArrayList<>(2);*/
 
-
-//        List<List<Integer>> characters = new ArrayList<>();
-//        characters.add(pobi);
-//        characters.add(crong);
-
-        while(pobi.isEmpty()){
+        /*while(pobi.isEmpty()){
             pageNum = rand.nextInt(401);
             //예외 처리: 시작면이나 마지막면 나오면 책 다시 펼치기
             if (pageNum == 0 || pageNum == 400) {
                 continue;
             } else {
-
                 if ((pageNum % 2) == 0) {
-                    pobi.add(1, pageNum);
                     pobi.add(0, pageNum - 1);
+                    pobi.add(1, pageNum);
                 } else {
                     pobi.add(0, pageNum);
                     pobi.add(1, pageNum + 1);
                 }
                 for (Integer i : pobi) {
-                    System.out.println("i = " + i);
+                    System.out.println("pobi's page = " + i);
                 }
             }
         }
@@ -54,59 +48,52 @@ class Problem1 {
                     crong.add(1, pageNum + 1);
                 }
                 for (Integer i : crong) {
-                    System.out.println("i = " + i);
+                    System.out.println("crong's page = " + i);
                 }
 
             }
+        }*/
+
+        boolean pobiPageCheck = true;
+        boolean crongPageCheck = true;
+        for(Integer page : pobi){
+            System.out.println("pobi's page = " + page);
         }
-        /*List<Integer> pobiCompareNumber = new ArrayList<>(4);
-        List<Integer> crongCompareNumber = new ArrayList<>(4);*/
 
-        Integer pobiMaxNumber = 0;
-        int pobiNumber = 0;
-        int pobiMultiplyNum = 1;
-        for(Integer pobiPage : pobi){
-            while(pobiPage != 0){
-                pobiNumber += pobiPage % 10;
-                pobiPage /= 10;
-                System.out.println("pobiNumber = " + pobiNumber);
-            }
-
-            max(pobiMaxNumber, pobiNumber);
-//            numCnt = pobiPage.toString().length();
-            while(pobiPage != 0) {
-                pobiMultiplyNum *= pobiPage % 10;
-                pobiPage /= 10;
-            }
-            max(pobiMaxNumber, pobiNumber);
+        for(Integer page : crong){
+            System.out.println("crong's page = " + page);
+        }
+        if ((pobi.get(1) - pobi.get(0)) != 1){
+            pobiPageCheck = false;
+        }
+        if ((crong.get(1) - crong.get(0)) != 1){
+            pobiPageCheck = false;
         }
 
 
-        Integer crongMaxNumber = 0;
-        int crongNumber = 0;
-        int crongMultiplyNum = 1;
-        for(Integer crongPage : crong){
-            while(crongPage != 0){
-                crongNumber += crongPage % 10;
-                crongPage /= 10;
-            }
-            max(crongMaxNumber, crongNumber);
-//            numCnt = pobiPage.toString().length();
-            while(crongPage != 0) {
-                crongMultiplyNum *= crongPage % 10;
-                crongPage /= 10;
-            }
-            max(crongMaxNumber, crongNumber);
-        }
-
-        if(pobiMaxNumber > crongMaxNumber){
-            answer = 1;
-        } else if (pobiMaxNumber < crongMaxNumber) {
-            answer = 2;
-        } else if(pobiMaxNumber == crongMaxNumber) {
-            answer = 0;
-        } else {
+        if(!(pobiPageCheck && crongPageCheck)){
+            System.out.println("pobiPageCheck = " + pobiPageCheck);
+            System.out.println("crongPageCheck = " + crongPageCheck);
             answer = -1;
+            System.out.println("Check answer = " + answer);
+        } else {
+
+            int pobiMaxNumber = getPobiMaxNumber(pobi);
+            int crongMaxNumber = getCrongMaxNumber(crong);
+
+            System.out.println();
+            System.out.println("crongMaxNumber = " + crongMaxNumber);
+            System.out.println("pobiMaxNumber = " + pobiMaxNumber);
+
+            if (pobiMaxNumber > crongMaxNumber) {
+                answer = 1;
+            } else if (pobiMaxNumber < crongMaxNumber) {
+                answer = 2;
+            } else if (pobiMaxNumber == crongMaxNumber) {
+                answer = 0;
+            }
+            System.out.println("answer = " + answer);
+            System.out.println();
         }
         //왼쪽페이지(홀수) 숫자를 각자리 숫자로 쪼개기
 
@@ -129,5 +116,58 @@ class Problem1 {
         //pobi crong 의 길이는 2
 
         return answer;
+    }
+
+    private static int getCrongMaxNumber(List<Integer> crong) {
+        int crongMaxNumber = 0;
+        for(Integer crongPage : crong){
+            int crongTemp = crongPage;
+            int crongNumber = 0;
+            int crongMultiplyNum = 1;
+            while(crongTemp != 0){
+                crongNumber += crongTemp % 10;
+                crongTemp /= 10;
+            }
+            System.out.println("crongSumNumber = " + crongNumber);
+            crongMaxNumber = max(crongMaxNumber, crongNumber);
+//            System.out.println("crongMaxNumber = " + crongMaxNumber);
+//            numCnt = pobiPage.toString().length();
+
+            crongTemp = crongPage;
+            while(crongTemp != 0) {
+                crongMultiplyNum *= crongTemp % 10;
+                crongTemp /= 10;
+            }
+            System.out.println("crongMultiplyNumber = " + crongMultiplyNum);
+            crongMaxNumber = max(crongMaxNumber, crongMultiplyNum);
+            System.out.println("crongMaxNumber = " + crongMaxNumber);
+        }
+        return crongMaxNumber;
+    }
+
+    private static int getPobiMaxNumber(List<Integer> pobi) {
+        int pobiMaxNumber = 0;
+        for(Integer pobiPage : pobi){
+            int pobiTemp = pobiPage;
+            int pobiNumber = 0;
+            int pobiMultiplyNum = 1;
+            while(pobiTemp != 0){
+                pobiNumber += pobiTemp % 10;
+                pobiTemp /= 10;
+            }
+            System.out.println("pobiSumNumber = " + pobiNumber);
+            pobiMaxNumber = max(pobiMaxNumber, pobiNumber);
+//            System.out.println("pobiMaxNumber = " + pobiMaxNumber);
+
+            pobiTemp = pobiPage;
+            while(pobiTemp != 0) {
+                pobiMultiplyNum *= pobiTemp % 10;
+                pobiTemp /= 10;
+            }
+            System.out.println("pobiMultiplyNum = " + pobiMultiplyNum);
+            pobiMaxNumber = max(pobiMaxNumber, pobiMultiplyNum);
+            System.out.println("pobiMaxNumber = " + pobiMaxNumber);
+        }
+        return pobiMaxNumber;
     }
 }
