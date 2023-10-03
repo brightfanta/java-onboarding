@@ -1,5 +1,6 @@
 package onboarding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Problem6 {
@@ -30,6 +31,30 @@ public class Problem6 {
          * 그럼 세글자부터는 조회할 필요가 없지
          *
          */
+
+        /*List<List<String>> forms = List.of(
+                List.of("jm@email.com", "제이엠"),
+                List.of("jason@email.com", "제이슨"),
+                List.of("woniee@email.com", "워니"),
+                List.of("mj@email.com", "엠제이"),
+                List.of("nowm@email.com", "이제엠")
+        );*/
+
+        List<String> nickname = new ArrayList<>();
+
+        for (int i = 0; i < forms.size(); i++) {
+            nickname.add(forms.get(i).get(1));
+        }
+
+        for (String n : nickname) {
+            System.out.println("n = " + n);
+        }
+        String testName = forms.get(0).get(1);
+
+        System.out.println("testName = " + testName);
+
+        System.out.println(testName.substring(0,2));
+        System.out.println(testName.substring(1,3));
 
         List<String> answer = List.of("answer");
         return answer;
