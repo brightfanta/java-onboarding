@@ -17,6 +17,15 @@ public class Problem2 {
          */
         boolean flag = true;
 
+        if (cryptogram.length() < 1 || cryptogram.length() > 1_000) {
+            return "";
+        }
+
+        for (int i = 0; i < cryptogram.length(); i++) {
+            if (cryptogram.charAt(i) < 97 || cryptogram.charAt(i) > 122) {
+                return "";
+            }
+        }
 
         do {
             for (int i = 0; i < cryptogram.length() - 1; i++) {

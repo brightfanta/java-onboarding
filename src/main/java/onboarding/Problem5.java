@@ -15,6 +15,10 @@ public class Problem5 {
          */
         //50000, 10000, 5000, 1000, 500, 100, 10, 1
 
+        if (money < 1 || money > 1_000_000) {
+            return null;
+        }
+
         List<Integer> bills = new ArrayList<>();
         bills.add(50000);
         bills.add(10000);
@@ -28,7 +32,7 @@ public class Problem5 {
 
         List<Integer> answer = Collections.emptyList();
         answer = new ArrayList<>(); // new 로 빈 객체를 생성해주어야 변경 method 사용 가능함!!
-        Scanner sc = new Scanner(System.in);
+//        Scanner sc = new Scanner(System.in);
 
         /*do {
             money = sc.nextInt();

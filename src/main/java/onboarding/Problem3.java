@@ -23,6 +23,9 @@ public class Problem3 {
         /*while(number < 0 || number > 10_000){
             number = 13;
         }*/
+        if (number < 1 || number > 10_000) {
+            return 0;
+        }
 
         for(int i = 0; i <= number; i++){
             System.out.println("i = " + i);

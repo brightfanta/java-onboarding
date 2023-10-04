@@ -56,10 +56,10 @@ class Problem1 {
 
         boolean pobiPageCheck = true;
         boolean crongPageCheck = true;
+
         for(Integer page : pobi){
             System.out.println("pobi's page = " + page);
         }
-
         for(Integer page : crong){
             System.out.println("crong's page = " + page);
         }
@@ -70,6 +70,9 @@ class Problem1 {
             pobiPageCheck = false;
         }
 
+        if (pobi.size() != 2 || crong.size() != 2) {
+            return 0;
+        }
 
         if(!(pobiPageCheck && crongPageCheck)){
             System.out.println("pobiPageCheck = " + pobiPageCheck);
